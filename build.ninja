@@ -1,0 +1,37 @@
+cc = clang++
+cflags = -Weverything
+rm = rm -rf
+src = src
+obj = obj
+bin = bin
+name = 6502
+
+
+rule compile
+  command = $cc $cflags -c $in -o $out
+  description = Compile $in to $out
+
+rule link
+  command = $cc $in -o $out
+  description = Link $in to $out
+
+rule clean
+  command = $rm $obj && $rm $bin
+  description = Clean build directory
+
+rule run
+  command = ./$in
+  description = Run $in
+
+build clean: clean
+
+build run: run $bin/$name
+
+build $obj/main.o: compile $src/main.cpp
+build $obj/memory.o: compile $src/memory.cpp
+
+
+build $bin/$name: link $obj/main.o $
+                      $obj/memory.o
+
+default $bin/$name
