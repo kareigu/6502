@@ -6,5 +6,6 @@ int main() {
   Memory ram;
   CPU cpu = CPU(&ram);
 
+  cpu.print_registers();
   return 0;
 }

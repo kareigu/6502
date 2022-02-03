@@ -22,4 +22,6 @@ struct CPU {
 
 
   CPU(Memory* memory);
+
+  void print_registers();
 };
