@@ -1,10 +1,16 @@
 #pragma once
+
 #include <cstdint>
 
-#define RAM_SIZE 64
+
+#define Byte uint8_t
+#define Bit bool
+#define WORD uint16_t
+
+#define RAM_SIZE 128
 
 struct Memory {
-  uint8_t mem[RAM_SIZE];
+  Byte mem[RAM_SIZE];
 
   void init_ram();
 };

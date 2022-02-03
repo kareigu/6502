@@ -29,9 +29,11 @@ build run: run $bin/$name
 
 build $obj/main.o: compile $src/main.cpp
 build $obj/memory.o: compile $src/memory.cpp
+build $obj/cpu.o: compile $src/cpu.cpp
 
 
 build $bin/$name: link $obj/main.o $
-                      $obj/memory.o
+                      $obj/memory.o $
+                      $obj/cpu.o
 
 default $bin/$name
