@@ -49,7 +49,7 @@ void CPU::print_registers() {
           ftxui::text(L"-: "), 
           ftxui::text(fmt::format("{:b}", false)) | ftxui::bold
         }),
-      })  | ftxui::color(ftxui::Color::Cyan),
+      })  | ftxui::color(ftxui::Color::Cyan) | ftxui::flex,
       ftxui::separator(),
       ftxui::vbox({
         ftxui::hbox({
@@ -64,7 +64,7 @@ void CPU::print_registers() {
           ftxui::text(L"I: "), 
           ftxui::text(fmt::format("{:b}", I)) | ftxui::bold
         }),
-      }) | ftxui::color(ftxui::Color::Cyan),
+      }) | ftxui::color(ftxui::Color::Cyan) | ftxui::flex,
       ftxui::separator(),
       ftxui::vbox({
         ftxui::hbox({
@@ -75,7 +75,7 @@ void CPU::print_registers() {
           ftxui::text(L"C: "), 
           ftxui::text(fmt::format("{:b}", C)) | ftxui::bold
         }),
-      }) | ftxui::color(ftxui::Color::Cyan)
+      }) | ftxui::color(ftxui::Color::Cyan) | ftxui::flex
       | ftxui::flex
     });
 
@@ -107,7 +107,7 @@ void CPU::print_registers() {
   auto view = ftxui::vbox({
     ftxui::hbox({
       main_registers(),
-      status_flags(),
+      status_flags() | ftxui::flex,
       other_info()
     })
   });
@@ -115,6 +115,6 @@ void CPU::print_registers() {
   auto screen = ftxui::Screen::Create(ftxui::Dimension::Full(), ftxui::Dimension::Fit(view));
   ftxui::Render(screen, view);
 
-  fmt::print("{}\n", screen.ToString());
+  screen.Print();
 }
 
