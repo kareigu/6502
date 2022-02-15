@@ -1,0 +1,6 @@
+[submodule "vendor/fmt/fmt"]
+	path = vendor/fmt/fmt
+	url = git@github.com:fmtlib/fmt.git
+[submodule "vendor/fmt"]
+	path = vendor/fmt
+	url = git@github.com:fmtlib/fmt.git
