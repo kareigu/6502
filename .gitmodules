@@ -1,6 +1,8 @@
 [submodule "vendor/fmt"]
 	path = vendor/fmt
 	url = git@github.com:fmtlib/fmt.git
+  ignore = dirty
 [submodule "vendor/FTXUI"]
 	path = vendor/FTXUI
 	url = git@github.com:ArthurSonzogni/FTXUI.git
+  ignore = dirty
