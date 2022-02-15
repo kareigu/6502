@@ -13,6 +13,7 @@ add_executable(${PROJECT_NAME}
   src/main.cpp
   src/cpu.cpp
   src/memory.cpp
+  src/asmb.cpp
 )
 
 set_target_properties(${PROJECT_NAME}
