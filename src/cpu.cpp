@@ -1,24 +1,24 @@
 #include "cpu.hpp"
-#include <iostream>
+#include "fmt/core.h"
 
 CPU::CPU(Memory* memory) 
   : mem(memory) 
 {
   mem->init_ram();
-  std::cout << "CPU Initialised" << std::endl;
+  fmt::print("CPU Initialised\n");
 }
 
 
 static void print_register(const char* label, Byte byte) {
-  std::cout << label << ": " << byte << std::endl;
+  fmt::print("{}: {:#x}\n", label, byte);
 }
 
 static void print_register(const char* label, Bit bit) {
-  std::cout << label << ": " << bit << std::endl;
+  fmt::print("{}: {:b}\n", label, bit);
 }
 
 static void print_register(const char* label, WORD word) {
-  std::cout << label << ": " << word << std::endl;
+  fmt::print("{}: {:#x}\n", label, word);
 }
 
 void CPU::print_registers() {
@@ -26,7 +26,7 @@ void CPU::print_registers() {
   print_register("X", X);
   print_register("Y", Y);
 
-  std::cout << "Status Flags:" << std::endl;
+  fmt::print("Status Flags:\n");
   print_register("N", N);
   print_register("V", V);
   print_register("-", false);

@@ -1,4 +1,3 @@
-#include <iostream>
 #include "memory.hpp"
 #include "cpu.hpp"
 

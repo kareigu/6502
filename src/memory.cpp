@@ -1,9 +1,9 @@
 #include "memory.hpp"
-#include <iostream>
+#include "fmt/core.h"
 
 void Memory::init_ram() {
   for (int i = 0; i < RAM_SIZE; i++)
     mem[i] = 0x0;
 
-  std::cout << "RAM Initialised with " << RAM_SIZE << " bytes" << std::endl;
+  fmt::print("RAM Initialised with {} bytes\n", RAM_SIZE);
 }
