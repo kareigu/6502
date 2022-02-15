@@ -1,7 +1,6 @@
 bin/
 obj/
-.ninja_deps
-.ninja_log
+.ninja*
 *.ninja
 
 CMakeLists.txt.user

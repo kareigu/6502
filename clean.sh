@@ -11,7 +11,7 @@ rm -rf ./build
 
 echo "Removing build system files"
 #Ninja
-rm -rf build.ninja .ninja_deps .ninja_log
+rm -rf *.ninja .ninja*
 
 #Make
 rm -rf Makefile
