@@ -23,8 +23,8 @@ set_target_properties(${PROJECT_NAME}
   RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/build/bin"
 )
 
-add_subdirectory(vendor/fmt)
-add_subdirectory(vendor/FTXUI)
+add_subdirectory(vendor/fmt EXCLUDE_FROM_ALL)
+add_subdirectory(vendor/FTXUI EXCLUDE_FROM_ALL)
 
 target_include_directories(${PROJECT_NAME} 
   PUBLIC vendor/fmt/include
