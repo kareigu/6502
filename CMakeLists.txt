@@ -23,15 +23,21 @@ set_target_properties(${PROJECT_NAME}
 )
 
 add_subdirectory(vendor/fmt)
+add_subdirectory(vendor/FTXUI)
 
 target_include_directories(${PROJECT_NAME} 
   PUBLIC vendor/fmt/include
+  PUBLIC vendor/FTXUI/include
 )
 
 target_link_directories(${PROJECT_NAME} 
   PRIVATE vendor/fmt/src
+  PRIVATE vendor/FTXUI/src
 )
 
 target_link_libraries(${PROJECT_NAME}
   fmt
+  ftxui::screen
+  ftxui::dom 
+  ftxui::component
 )
