@@ -51,10 +51,7 @@ int main() {
     &screen
   );
 
-  screen.Loop(ftxui::Renderer([&] { 
-    screen_on = true;
-    return cpu.print_registers(); 
-  }));
+  screen.Loop(cpu.render_screen(&screen_on));
 
   screen_on = false;
   run = false;

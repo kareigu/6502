@@ -2,6 +2,7 @@
 
 #include "memory.hpp"
 #include "ftxui/dom/elements.hpp"
+#include "ftxui/component/component.hpp"
 
 
 struct CPU {
@@ -25,4 +26,6 @@ struct CPU {
   CPU(Memory* memory);
 
   ftxui::Element print_registers();
+  ftxui::Element print_screen_ram();
+  ftxui::Component render_screen(bool* screen_on);
 };

@@ -1,3 +1,4 @@
+#include <string>
 #include "cpu.hpp"
 #include "fmt/core.h"
 #include "ftxui/dom/elements.hpp"
@@ -115,3 +116,36 @@ ftxui::Element CPU::print_registers() {
   return view;
 }
 
+ftxui::Element CPU::print_screen_ram() {
+  std::vector<ftxui::Element> screen_lines(SCREEN_HEIGHT);
+  for (int line_number = 0; line_number < SCREEN_HEIGHT; line_number++) {
+    for (
+      int line_start_addr = SCREEN_RAM_START + line_number * (BYTES_PER_CHARACTER * SCREEN_WIDTH); 
+      line_start_addr < SCREEN_RAM_END;
+      line_start_addr += BYTES_PER_CHARACTER * SCREEN_WIDTH
+      ) {
+        std::string chars_on_line = "";
+        for (int char_addr = line_start_addr; char_addr < line_start_addr + BYTES_PER_CHARACTER * SCREEN_WIDTH; char_addr += BYTES_PER_CHARACTER) {
+          chars_on_line.append(fmt::format("{:c}", (*mem)[char_addr]));
+        }
+        screen_lines[line_number] = ftxui::text(chars_on_line);
+      }
+  }
+
+
+  auto screen = ftxui::vbox(screen_lines);
+
+
+  return ftxui::window(ftxui::text("Screen"), screen | ftxui::center);
+}
+
+ftxui::Component CPU::render_screen(bool* screen_on) {
+
+  return ftxui::Renderer([&] { 
+    *screen_on = true; 
+    return ftxui::vbox({
+      print_registers(),
+      print_screen_ram()
+    }); 
+  });
+}
