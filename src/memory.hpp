@@ -7,7 +7,7 @@
 #define Bit bool
 #define WORD uint16_t
 
-#define RAM_SIZE 128
+#define RAM_SIZE 40969
 
 struct Memory {
   Byte mem[RAM_SIZE];
