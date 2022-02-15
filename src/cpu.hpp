@@ -1,6 +1,7 @@
 #pragma once
 
 #include "memory.hpp"
+#include "ftxui/dom/elements.hpp"
 
 
 struct CPU {
@@ -23,5 +24,5 @@ struct CPU {
 
   CPU(Memory* memory);
 
-  void print_registers();
+  ftxui::Element print_registers();
 };

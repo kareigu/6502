@@ -11,7 +11,7 @@ CPU::CPU(Memory* memory)
   fmt::print("CPU Initialised\n");
 }
 
-void CPU::print_registers() {
+ftxui::Element CPU::print_registers() {
   auto main_registers = [&] {
     auto content = ftxui::vbox({
       ftxui::hbox({
@@ -112,9 +112,6 @@ void CPU::print_registers() {
     })
   });
 
-  auto screen = ftxui::Screen::Create(ftxui::Dimension::Full(), ftxui::Dimension::Fit(view));
-  ftxui::Render(screen, view);
-
-  screen.Print();
+  return view;
 }
 
