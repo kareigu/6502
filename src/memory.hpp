@@ -20,6 +20,9 @@ struct Memory {
   Byte mem[RAM_SIZE];
 
   void init_ram();
+  void fill_screen_ram(char c);
+
+  void set_byte(ADDR addr, Byte byte);
 
   Byte operator[] (uint16_t i) const { return mem[i]; }
   Byte& operator[] (uint16_t i) { return mem[i]; };

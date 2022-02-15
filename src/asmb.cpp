@@ -11,7 +11,7 @@ namespace asmb {
   }
 
   void stx(CPU* cpu, ADDR addr) {
-    (*cpu->mem)[addr] = cpu->X;
+    cpu->mem->set_byte(addr, cpu->X);
   }
 
   void inx(CPU* cpu) {

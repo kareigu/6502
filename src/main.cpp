@@ -16,16 +16,19 @@
 
 
 void test_prg(CPU* cpu) {
-  const ADDR addr = 0x25;
-  asmb::ldx(cpu, addr);
-  asmb::inx(cpu);
-  asmb::stx(cpu, addr);
+  for(ADDR i = SCREEN_RAM_START; i < SCREEN_RAM_END; i += BYTES_PER_CHARACTER) {
+    const ADDR addr = SCREEN_RAM_START;
+    asmb::ldx(cpu, i);
+    asmb::inx(cpu);
+    asmb::stx(cpu, i);
+  }
 }
 
 void run_update(bool* run, bool* screen_on, CPU* cpu, ftxui::ScreenInteractive* screen) {
   while(*run) {
     cpu->PC++;
     test_prg(cpu);
+    //cpu->mem->fill_screen_ram(cpu->PC);
     if(*screen_on)
       screen->PostEvent(ftxui::Event::Custom);
 
