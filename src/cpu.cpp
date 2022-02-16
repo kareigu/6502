@@ -5,10 +5,9 @@
 #include "ftxui/screen/screen.hpp"
 #include "ftxui/screen/string.hpp"
 
-CPU::CPU(Memory* memory) 
-  : mem(memory) 
-{
-  mem->init_ram();
+CPU::CPU() {
+  mem = Memory();
+  mem.init_ram();
   fmt::print("CPU Initialised\n");
 }
 
@@ -126,7 +125,7 @@ ftxui::Element CPU::print_screen_ram() {
       ) {
         std::string chars_on_line = "";
         for (int char_addr = line_start_addr; char_addr < line_start_addr + BYTES_PER_CHARACTER * SCREEN_WIDTH; char_addr += BYTES_PER_CHARACTER) {
-          chars_on_line.append(fmt::format("{:c}", (*mem)[char_addr]));
+          chars_on_line.append(fmt::format("{:c}", mem[char_addr]));
         }
         screen_lines[line_number] = ftxui::text(chars_on_line);
       }

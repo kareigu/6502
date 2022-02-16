@@ -38,8 +38,7 @@ void run_update(bool* run, bool* screen_on, CPU* cpu, ftxui::ScreenInteractive* 
 
 
 int main() {
-  Memory ram;
-  CPU cpu = CPU(&ram);
+  CPU cpu = CPU();
 
   bool run = true;
   bool screen_on = false;

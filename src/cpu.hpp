@@ -6,7 +6,7 @@
 
 
 struct CPU {
-  Memory* mem;
+  Memory mem;
   Byte A;
   Byte X;
   Byte Y;
@@ -23,7 +23,7 @@ struct CPU {
   WORD PC;
 
 
-  CPU(Memory* memory);
+  CPU();
 
   ftxui::Element print_registers();
   ftxui::Element print_screen_ram();

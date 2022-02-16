@@ -3,7 +3,7 @@
 
 namespace asmb {
   void ldx(CPU* cpu, ADDR addr) {
-    cpu->X = (*cpu->mem)[addr];
+    cpu->X = cpu->mem[addr];
   }
 
   void ldx(CPU* cpu, Byte value) {
@@ -11,7 +11,7 @@ namespace asmb {
   }
 
   void stx(CPU* cpu, ADDR addr) {
-    cpu->mem->set_byte(addr, cpu->X);
+    cpu->mem[addr] = cpu->X;
   }
 
   void inx(CPU* cpu) {
