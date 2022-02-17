@@ -88,12 +88,12 @@ ftxui::Element CPU::print_registers() {
       ftxui::hbox({
         ftxui::text(L"SP: "),
         ftxui::filler(),
-        ftxui::text(fmt::format("{:#x}", S))
+        ftxui::text(fmt::format("{:#x}", SP))
       }) | ftxui::color(ftxui::Color::Gold1),
       ftxui::hbox({
         ftxui::text(L"PC: "),
         ftxui::filler(),
-        ftxui::text(fmt::format("{:#x}", P))
+        ftxui::text(fmt::format("{:#x}", PC))
       }) | ftxui::color(ftxui::Color::Red),
       ftxui::hbox({
         ftxui::text(L"Memory: "),
@@ -158,4 +158,19 @@ ftxui::Component CPU::render_screen(bool* screen_on, bool* running) {
   });
 
   return event_listener;
+}
+
+Byte CPU::fetch_byte(uint8_t& cycles_left) {
+  Byte data = mem[PC];
+  cycles_left--;
+  PC++;
+  return data;
+}
+
+
+void CPU::reset() {
+  PC = RESET_VECTOR;
+  SP = 0x0100;
+  N = V = B = D = I = Z = C = 0;
+  A = X = Y = 0;
 }

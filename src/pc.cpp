@@ -13,9 +13,21 @@ void test_prg(CPU* cpu) {
 }
 
 void run_update(PC* pc) {
+  uint8_t cycles = 2;
   while (pc->running) {
-    pc->cpu.P++;
-    test_prg(&pc->cpu);
+    Byte instruction = pc->cpu.fetch_byte(cycles);
+
+    bool ran_ins = false;
+    for (auto i : INS_SET::get()) {
+      if (instruction == i->op_code()) {
+        i->execute(&pc->cpu);
+        ran_ins = true;
+        break;
+      }
+    }
+    pc->running = ran_ins;
+
+    //test_prg(&pc->cpu);
     //cpu->mem->fill_screen_ram(cpu->PC);
     if (pc->screen_on)
       pc->screen.PostEvent(ftxui::Event::Custom);
@@ -37,6 +49,9 @@ PC::~PC() {
 }
 
 void PC::run() {
+  cpu.mem[RESET_VECTOR] = 0xA9;
+  cpu.mem[RESET_VECTOR + 1] = 0xB2;
+
   running = true;
   worker = std::thread(run_update, this);
 

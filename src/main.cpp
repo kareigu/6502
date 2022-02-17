@@ -7,6 +7,7 @@
 int main() {
   PC pc = PC();
 
+  pc.cpu.reset();
   pc.run();
 
   delete& pc;

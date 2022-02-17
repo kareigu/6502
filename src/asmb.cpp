@@ -17,4 +17,21 @@ namespace asmb {
   void inx(CPU* cpu) {
     cpu->X++;
   }
+
+
 }
+
+namespace INS {
+  void LDA_IM::execute(CPU* cpu) {
+    auto c = cycles();
+    Byte data = cpu->fetch_byte(c);
+    cpu->A = data;
+    cpu->Z = cpu->A == 0;
+    cpu->N = (cpu->A & 0b1000000) > 0;
+  }
+}
+
+
+std::array<INS::Instruction*, INS_SET::size> INS_SET::list = {
+  new INS::LDA_IM(),
+};

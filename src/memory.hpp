@@ -10,6 +10,7 @@
 #define ADDR uint16_t
 
 #define RAM_SIZE 40969
+#define RESET_VECTOR RAM_SIZE - 2
 
 #define SCREEN_WIDTH 40
 #define SCREEN_HEIGHT 25
