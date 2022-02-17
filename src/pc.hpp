@@ -3,7 +3,7 @@
 #include "cpu.hpp"
 #include "ftxui/component/screen_interactive.hpp"
 
-#define WAIT_TIME 50
+#define WAIT_TIME 2500
 
 struct PC {
 	CPU cpu;

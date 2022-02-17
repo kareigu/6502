@@ -49,8 +49,17 @@ PC::~PC() {
 }
 
 void PC::run() {
-  cpu.mem[RESET_VECTOR] = 0xA9;
-  cpu.mem[RESET_VECTOR + 1] = 0xB2;
+#if 1
+  cpu.mem[RESET_VECTOR] = 0x4c;
+  cpu.mem[RESET_VECTOR + 1] = 0x05;
+  cpu.mem[RESET_VECTOR + 2] = 0x05;
+
+  WORD n_loc = (Byte)0x05;
+  n_loc |= ((Byte)0x05 << 8);
+
+  cpu.mem[n_loc] = 0xa9;
+  cpu.mem[n_loc + 1] = 0xca;
+#endif
 
   running = true;
   worker = std::thread(run_update, this);

@@ -167,6 +167,16 @@ Byte CPU::fetch_byte(uint8_t& cycles_left) {
   return data;
 }
 
+WORD CPU::fetch_word(uint8_t& cycles_left) {
+  WORD data = mem[PC];
+  PC++;
+  Byte hi = mem[PC];
+  PC++;
+  data |= (hi << 8);
+  cycles_left -= 2;
+  return data;
+}
+
 
 void CPU::reset() {
   PC = RESET_VECTOR;

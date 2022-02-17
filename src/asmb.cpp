@@ -29,9 +29,16 @@ namespace INS {
     cpu->Z = cpu->A == 0;
     cpu->N = (cpu->A & 0b1000000) > 0;
   }
+
+  void JMP_ABS::execute(CPU* cpu) {
+    auto c = cycles();
+    WORD data = cpu->fetch_word(c);
+    cpu->PC = data;
+  }
 }
 
 
 std::array<INS::Instruction*, INS_SET::size> INS_SET::list = {
   new INS::LDA_IM(),
+  new INS::JMP_ABS(),
 };

@@ -13,24 +13,28 @@ namespace asmb {
 }
 
 namespace INS {
-  class Instruction {
-  public:
+  struct Instruction {
     virtual uint8_t op_code() { return 0; };
     virtual uint8_t cycles() { return 0; };
     virtual void execute(CPU* cpu) { return; };
   };
 
-  class LDA_IM : public Instruction {
-  public:
+  struct LDA_IM : public Instruction {
     uint8_t op_code() override { return 0xa9; };
     uint8_t cycles() override { return 2; };
+    void execute(CPU* cpu) override;
+  };
+
+  struct JMP_ABS : public Instruction {
+    uint8_t op_code() override { return 0x4c; };
+    uint8_t cycles() override { return 3; };
     void execute(CPU* cpu) override;
   };
 }
 
 struct INS_SET {
 private:
-  static const int size = 1;
+  static const int size = 2;
   static std::array<INS::Instruction*, size> list;
 
 public:

@@ -26,6 +26,7 @@ struct CPU {
   CPU();
 
   Byte fetch_byte(uint8_t& cycles_left);
+  WORD fetch_word(uint8_t& cycles_left);
 
   void reset();
 
