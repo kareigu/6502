@@ -14,7 +14,7 @@ add_executable(${PROJECT_NAME}
   src/cpu.cpp
   src/memory.cpp
   src/asmb.cpp
-)
+ "src/pc.cpp")
 
 set_target_properties(${PROJECT_NAME}
   PROPERTIES
