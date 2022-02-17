@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <memory>
 
 
 #define Byte uint8_t
@@ -17,7 +18,7 @@
 #define SCREEN_RAM_END SCREEN_RAM_START + (SCREEN_WIDTH * SCREEN_HEIGHT) * BYTES_PER_CHARACTER
 
 struct Memory {
-  Byte* mem = new Byte[RAM_SIZE];
+  std::shared_ptr<Byte[]> mem = std::make_shared<Byte[RAM_SIZE]>();
 
   void init_ram();
   void fill_screen_ram(char c);
