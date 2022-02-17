@@ -4,6 +4,7 @@
 #include "ftxui/dom/elements.hpp"
 #include "ftxui/screen/screen.hpp"
 #include "ftxui/screen/string.hpp"
+#include "ftxui/component/event.hpp"
 
 CPU::CPU() {
   mem = Memory();
@@ -92,7 +93,7 @@ ftxui::Element CPU::print_registers() {
       ftxui::hbox({
         ftxui::text(L"PC: "),
         ftxui::filler(),
-        ftxui::text(fmt::format("{:#x}", PC))
+        ftxui::text(fmt::format("{:#x}", P))
       }) | ftxui::color(ftxui::Color::Red),
       ftxui::hbox({
         ftxui::text(L"Memory: "),
@@ -138,13 +139,23 @@ ftxui::Element CPU::print_screen_ram() {
   return ftxui::window(ftxui::text("Screen"), screen | ftxui::center);
 }
 
-ftxui::Component CPU::render_screen(bool* screen_on) {
-
-  return ftxui::Renderer([&] { 
-    *screen_on = true; 
+ftxui::Component CPU::render_screen(bool* screen_on, bool* running) {
+  auto render_function = ftxui::Renderer([&] {
+    *screen_on = true;
     return ftxui::vbox({
       print_registers(),
       print_screen_ram()
-    }); 
+      });
   });
+
+  auto event_listener = ftxui::CatchEvent(render_function, [&](ftxui::Event event) { 
+    if (event == ftxui::Event::Escape) {
+      *screen_on = false;
+      *running = false;
+      return true;
+    }
+    return false;
+  });
+
+  return event_listener;
 }

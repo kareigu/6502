@@ -14,7 +14,7 @@ void test_prg(CPU* cpu) {
 
 void run_update(PC* pc) {
   while (pc->running) {
-    pc->cpu.PC++;
+    pc->cpu.P++;
     test_prg(&pc->cpu);
     //cpu->mem->fill_screen_ram(cpu->PC);
     if (pc->screen_on)
@@ -39,5 +39,8 @@ PC::~PC() {
 void PC::run() {
   running = true;
   worker = std::thread(run_update, this);
-  screen.Loop(cpu.render_screen(&screen_on));
+
+  auto screen_draw = cpu.render_screen(&screen_on, &running);
+
+  screen.Loop(screen_draw);
 }

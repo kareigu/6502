@@ -20,12 +20,12 @@ struct CPU {
   Bit C;
 
   Byte S;
-  WORD PC;
+  WORD P;
 
 
   CPU();
 
   ftxui::Element print_registers();
   ftxui::Element print_screen_ram();
-  ftxui::Component render_screen(bool* screen_on);
+  ftxui::Component render_screen(bool* screen_on, bool* running);
 };
